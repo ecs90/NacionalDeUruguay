@@ -1,10 +1,10 @@
-package uy.nacional.escudo;
+package uy.nacional.tricolor;
 
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -17,20 +17,20 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout li;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Window window = this.getWindow();
+        final Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         setContentView(R.layout.activity_main);
 
-        li = (LinearLayout)findViewById(R.id.activity_main);
+        li = (LinearLayout) findViewById(R.id.activity_main);
         li.setBackgroundColor(Color.parseColor("#003366"));
 
         timer = new Timer();
 
-        MyTimerTask myTimerTask=new MyTimerTask();
+        final MyTimerTask myTimerTask = new MyTimerTask();
         //schedule to change background color every 5 seconds
-        timer.schedule(myTimerTask,5000,5000);
+        timer.schedule(myTimerTask, 5000, 5000);
     }
 
     public class MyTimerTask extends TimerTask {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         };
         int count = 1;
 
-        public String getColor(int bgColor){
+        public String getColor(final int bgColor) {
             return colors[bgColor];
         }
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void run() {
-                    int color = Color.parseColor(getColor(count));
+                    final int color = Color.parseColor(getColor(count));
                     li.setBackgroundColor(color);
                     getWindow().setStatusBarColor(color);
 
